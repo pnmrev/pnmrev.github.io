@@ -2,10 +2,14 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Home</title>
     
     <link rel="icon" type="image/jpeg" href="logo.JPG">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Home">
 
     <style>
         :root {
@@ -17,7 +21,7 @@
             --btn-hover: #ffffff;
         }
 
-        /* Пункт 1: Темная тема */
+        /* Пункт 1 из прошлого шага: Темная тема */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #000000;
@@ -39,6 +43,8 @@
             margin: 0;
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s ease;
+            /* Запрет скролла лишнего на мобилках */
+            overflow: hidden;
         }
 
         .container {
@@ -55,6 +61,8 @@
             margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.12);
             object-fit: cover;
+            /* Мягкий угол в стиле Apple */
+            clip-path: inset(0 round 22%);
         }
 
         h1 {
@@ -85,9 +93,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            
+            /* Пункт 3: Запрет выделения текста */
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent; /* Убирает синюю вспышку при тапе на iOS */
         }
 
-        /* Адаптация бордера кнопки для темной темы */
         @media (prefers-color-scheme: dark) {
             .btn {
                 border: 1px solid rgba(255,255,255,0.1);
@@ -98,6 +110,12 @@
             transform: scale(1.02);
             background-color: var(--btn-hover);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Пункт 1: Эффект нажатия (Active State) */
+        .btn:active {
+            transform: scale(0.96);
+            opacity: 0.8;
         }
 
         .btn-discord {
