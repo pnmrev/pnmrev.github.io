@@ -4,13 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    
+    <link rel="icon" type="image/jpeg" href="logo.JPG">
+
     <style>
         :root {
             --bg-color: #f5f5f7;
             --card-bg: rgba(255, 255, 255, 0.8);
             --text-color: #1d1d1f;
             --secondary-text: #86868b;
-            --discord-color: #5865F2; /* Фирменный цвет Discord */
+            --discord-color: #5865F2;
+            --btn-hover: #ffffff;
+        }
+
+        /* Пункт 1: Темная тема */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #000000;
+                --card-bg: rgba(28, 28, 30, 0.8);
+                --text-color: #f5f5f7;
+                --secondary-text: #86868b;
+                --btn-hover: #2c2c2e;
+            }
         }
 
         body {
@@ -23,6 +38,7 @@
             min-height: 100vh;
             margin: 0;
             -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease;
         }
 
         .container {
@@ -35,9 +51,9 @@
         .profile-img {
             width: 120px;
             height: 120px;
-            border-radius: 30px; /* Сквиркл в стиле iOS */
+            border-radius: 30px;
             margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
             object-fit: cover;
         }
 
@@ -45,7 +61,7 @@
             font-size: 28px;
             font-weight: 600;
             letter-spacing: -0.5px;
-            margin: 0 0 35px 0; /* Увеличил отступ, так как убрали сабтайтл */
+            margin: 0 0 35px 0;
         }
 
         .links-stack {
@@ -71,13 +87,19 @@
             align-items: center;
         }
 
-        .btn:hover {
-            transform: scale(1.02);
-            background-color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        /* Адаптация бордера кнопки для темной темы */
+        @media (prefers-color-scheme: dark) {
+            .btn {
+                border: 1px solid rgba(255,255,255,0.1);
+            }
         }
 
-        /* Стилизация кнопки Discord */
+        .btn:hover {
+            transform: scale(1.02);
+            background-color: var(--btn-hover);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
         .btn-discord {
             background-color: var(--discord-color);
             color: white;
